@@ -31,10 +31,14 @@ import { Provider } from 'react-redux';
 import { AppReducer } from './../reducer/';
 
 export abstract class App {
+  appHandle:string;
+
   reducer:Reducer;
   store:Store;
 
-  constructor(reducer:Reducer=null) {
+  constructor(appHandle:string, reducer:Reducer=null) {
+    this.appHandle = appHandle;
+
     //Get and join, or create reducer
     if(reducer) {
       reducer = combineReducers({ reducer, AppReducer });
@@ -58,7 +62,7 @@ export abstract class App {
   }
 
   getElement() {
-    return document.getElementById("app");
+    return document.getElementById(this.appHandle);
   }
 
   abstract getComponent():any;

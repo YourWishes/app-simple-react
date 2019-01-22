@@ -2,7 +2,6 @@
   "compilerOptions": {
     "target": "es2018",
     "module": "commonjs",
-    "outDir": "./../dist/public",
     "sourceMap": true,
     "declaration": true,
     "typeRoots": [ "./node_modules/@types" ],

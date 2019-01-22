@@ -2,12 +2,12 @@
   "name": "@yourwishes/app-simple-react",
   "version": "0.1.1",
   "description": "",
-  "main": "dist/private/index.js",
+  "main": "dist/index.js",
   "scripts": {
     "test": "jest",
     "start": "node dist/private/",
-    "build": "tsc -p ./private/ && tsc -p ./public/",
-    "heroku-postbuild": "tsc -p ./private/ && tsc -p ./public/"
+    "build": "tsc -p ./private/",
+    "heroku-postbuild": "tsc -p ./private/"
   },
   "repository": {
     "type": "git",

@@ -26,7 +26,7 @@ import * as Loadable from 'react-loadable';
 import { Route as ReactRoute, RouteProps as ReactRouteProps } from 'react-router-dom';
 import { LoadingComponentProps } from 'react-loadable';
 
-const Loader = (props:LoadingComponentProps) => {
+const LoadingComponent = (props:LoadingComponentProps) => {
   let { error, pastDelay } = props;
   if(error) return <div>{error}</div>;
   if(pastDelay) return <div>Loading...</div>;
@@ -36,22 +36,24 @@ const Loader = (props:LoadingComponentProps) => {
 export interface RouteProps<Props> extends ReactRouteProps {
   //For Delayed Loading Components,
   load?:any,
-  loader?:React.ComponentType<LoadingComponentProps> | (() => null);
+  loadingComponent?:React.ComponentType<LoadingComponentProps> | (() => null),
+  render?:(props:any) => React.ReactElement<any>
 }
 
 export const Route = (props:RouteProps<any>) => {
-  if(props.component) return <ReactRoute {...props}  />;
+  let { children, component, render } = props;
+  if(children || component || render) return <ReactRoute {...props}  />;
 
   //Default Loader
-  let loader = props.loader || Loader;
+  let loadingComponent = props.loadingComponent || LoadingComponent;
 
-  let render = (subProps:ReactRouteProps) => {
+  let LoadRender = (subProps:ReactRouteProps) => {
     let CustomLoadable = Loadable({
       loader: props.load,
-      loading: loader
+      loading: loadingComponent
     });
     return <CustomLoadable {...props} {...subProps} />
   };
 
-  return <ReactRoute {...props} render={render} />;
+  return <ReactRoute {...props} render={LoadRender} />;
 };
