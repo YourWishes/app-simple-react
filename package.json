@@ -1,6 +1,6 @@
 {
   "name": "@yourwishes/app-simple-react",
-  "version": "0.2.2",
+  "version": "0.2.5",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -28,8 +28,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@yourwishes/app-base": "^1.2.0",
-    "@yourwishes/app-react": "^0.1.2",
-    "@yourwishes/app-server": "^1.0.5",
+    "@yourwishes/app-react": "^0.2.0",
     "html-webpack-plugin": "^3.2.0",
     "react-loadable": "^5.5.0",
     "react-redux": "^6.0.0",
@@ -46,7 +45,6 @@
     "@types/react-redux": "^7.0.0",
     "@types/react-router": "^4.4.3",
     "@types/react-router-dom": "^4.3.1",
-    "@types/redux": "^3.6.0",
     "jest": "^23.6.0",
     "ts-jest": "^23.10.5",
     "typescript": "^3.2.4"
