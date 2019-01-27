@@ -1,6 +1,6 @@
 {
   "name": "@yourwishes/app-simple-react",
-  "version": "0.2.5",
+  "version": "0.3.0",
   "description": "",
   "main": "dist/index.js",
   "scripts": {
@@ -28,7 +28,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
     "@yourwishes/app-base": "^1.2.0",
-    "@yourwishes/app-react": "^0.2.0",
+    "@yourwishes/app-react": "^0.2.5",
     "html-webpack-plugin": "^3.2.0",
     "react-loadable": "^5.5.0",
     "react-redux": "^6.0.0",
