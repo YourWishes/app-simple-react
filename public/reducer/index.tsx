@@ -21,10 +21,10 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { combineReducers } from 'redux';
+import {  AppReducer } from './../app/App';
 
 export const PersistantReducer = (state, action) => state ? state : {};
 
-export const AppReducer = combineReducers({
-  PersistantReducer
-});
+export const SimpleReducer:AppReducer = {
+  persistent: PersistantReducer
+};

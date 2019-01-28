@@ -28,7 +28,11 @@ import * as ReactDOM from 'react-dom';
 import { createStore, applyMiddleware, Reducer, Store, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
 
-import { AppReducer } from './../reducer/';
+import { SimpleReducer } from './../reducer/';
+
+export interface AppReducer {
+  [key:string]: Reducer
+}
 
 export abstract class App {
   appHandle:string;
@@ -36,18 +40,12 @@ export abstract class App {
   reducer:Reducer;
   store:Store;
 
-  constructor(appHandle:string, reducer:Reducer=null) {
+  constructor(appHandle:string, reducer:AppReducer={}) {
     this.appHandle = appHandle;
 
     //Get and join, or create reducer
-    if(reducer) {
-      reducer = combineReducers({ reducer, AppReducer });
-    } else {
-      reducer = AppReducer;
-    }
-
-    this.reducer = reducer;
-    this.store = createStore(reducer);
+    this.reducer = combineReducers({ ...reducer, ...SimpleReducer });
+    this.store = createStore(this.reducer);
   }
 
   render() {
