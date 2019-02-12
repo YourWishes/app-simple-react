@@ -25,14 +25,15 @@ import '@babel/polyfill';
 
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
-import { createStore, applyMiddleware, Reducer, Store, combineReducers } from 'redux';
 import { Provider } from 'react-redux';
+import { routerMiddleware } from 'connected-react-router';
+import { history } from './../route/';
+import { rootReducer } from './../reducer/';
+import thunk, { ThunkMiddleware } from 'redux-thunk';
 
-import { SimpleReducer } from './../reducer/';
-
-export interface AppReducer {
-  [key:string]: Reducer
-}
+import {
+  createStore, applyMiddleware, Reducer, Store, combineReducers, Middleware
+} from 'redux';
 
 export abstract class App {
   appHandle:string;
@@ -40,12 +41,23 @@ export abstract class App {
   reducer:Reducer;
   store:Store;
 
-  constructor(appHandle:string, reducer:AppReducer={}) {
+  constructor(appHandle:string, reducer?:Reducer, middlewares?:Middleware[]) {
     this.appHandle = appHandle;
 
     //Get and join, or create reducer
-    this.reducer = combineReducers({ ...reducer, ...SimpleReducer });
-    this.store = createStore(this.reducer);
+    this.reducer = reducer ? combineReducers({ router: rootReducer, reducer }) : combineReducers({ router: rootReducer });
+
+    //Create the store, apply middleware
+    middlewares = middlewares || [];
+    this.store = createStore(this.reducer, applyMiddleware(
+      thunk as ThunkMiddleware<any, any>,
+      routerMiddleware(history),
+      ...middlewares
+    ));
+
+    console.log('REducer:');
+    console.log(rootReducer);
+    console.log(this.reducer);
   }
 
   render() {

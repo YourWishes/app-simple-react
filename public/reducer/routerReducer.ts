@@ -21,12 +21,8 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-import { combineReducers } from 'redux';
-import { history } from './../route/';
+// reducers.js
+import { History } from 'history';
 import { connectRouter } from 'connected-react-router'
 
-/*export const rootReducer = combineReducers({
-  router: connectRouter(history)
-});
-*/
-export const rootReducer = connectRouter(history);
+export const createRouterReducer = (history:History) => connectRouter(history);

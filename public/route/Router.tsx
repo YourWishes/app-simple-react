@@ -22,30 +22,41 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
+import { createBrowserHistory } from 'history'
 import { HashRouter, BrowserRouter, withRouter, Switch, RouteComponentProps } from 'react-router-dom';
+import { ConnectedRouter } from 'connected-react-router';
 
-export interface RouterProps {
-  children?:React.ReactNode;
-};
+//History (used by router and state for manipulation by store)
+export const history = createBrowserHistory();
 
-
+//General switch wrapper.
 export const RouteSwitch = withRouter((props:RouteComponentProps) => {
   return <Switch {...props} />;
 });
 
-
+//Routers
+export interface RouterProps {
+  children?:React.ReactNode;
+};
 export const ProductionRouter = (props:RouterProps) => <BrowserRouter {...props} />;
 export const DevelopmentRouter = (props:RouterProps) => <HashRouter {...props} />;
 
 export const Router = (props:RouterProps) => {
+  //ConnectedRouter provides the store manipulation
+  //Router element is automatically selected below to be
+  //either HashRouter or BrowserRouter depending on dev mode or not.
+  //The route switch provides the wrapper for the routes
+  //routes is the children of this object.
+
+  //Select Router type
   let RouterElement = ProductionRouter;
   if(!PRODUCTION) RouterElement = DevelopmentRouter;
 
   return (
-    <RouterElement>
+    <ConnectedRouter history={history}>
       <RouteSwitch>
         { props.children }
       </RouteSwitch>
-    </RouterElement>
+    </ConnectedRouter>
   );
 }
