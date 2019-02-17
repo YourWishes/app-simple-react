@@ -22,12 +22,8 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
-import { createBrowserHistory } from 'history'
+import { History } from 'history'
 import { HashRouter, BrowserRouter, withRouter, Switch, RouteComponentProps } from 'react-router-dom';
-import { ConnectedRouter } from 'connected-react-router';
-
-//History (used by router and state for manipulation by store)
-export const history = createBrowserHistory();
 
 //General switch wrapper.
 export const RouteSwitch = withRouter((props:RouteComponentProps) => {
@@ -36,6 +32,7 @@ export const RouteSwitch = withRouter((props:RouteComponentProps) => {
 
 //Routers
 export interface RouterProps {
+  history:History;
   children?:React.ReactNode;
 };
 export const ProductionRouter = (props:RouterProps) => <BrowserRouter {...props} />;
@@ -53,10 +50,10 @@ export const Router = (props:RouterProps) => {
   if(!PRODUCTION) RouterElement = DevelopmentRouter;
 
   return (
-    <ConnectedRouter history={history}>
+    <RouterElement {...props}>
       <RouteSwitch>
         { props.children }
       </RouteSwitch>
-    </ConnectedRouter>
+    </RouterElement>
   );
 }

@@ -24,40 +24,21 @@
 import '@babel/polyfill';
 
 import * as React from 'react';
-import * as ReactDOM from 'react-dom';
+import { ReactDOM } from 'react-dom';
 import { Provider } from 'react-redux';
-import { routerMiddleware } from 'connected-react-router';
-import { history } from './../route/';
-import { rootReducer } from './../reducer/';
-import thunk, { ThunkMiddleware } from 'redux-thunk';
+import { Action, Reducer } from 'redux';
+import { AppStore, AppStoreOwner }  from '@yourwishes/app-store';
+import { History, createBrowserHistory } from 'history';
 
-import {
-  createStore, applyMiddleware, Reducer, Store, combineReducers, Middleware
-} from 'redux';
-
-export abstract class App {
+export abstract class App<S,A extends Action> implements AppStoreOwner<S,A>  {
   appHandle:string;
+  store:AppStore<S,A>;
+  history:History;
 
-  reducer:Reducer;
-  store:Store;
-
-  constructor(appHandle:string, reducer?:Reducer, middlewares?:Middleware[]) {
+  constructor(appHandle:string) {
     this.appHandle = appHandle;
-
-    //Get and join, or create reducer
-    this.reducer = reducer ? combineReducers({ router: rootReducer, reducer }) : combineReducers({ router: rootReducer });
-
-    //Create the store, apply middleware
-    middlewares = middlewares || [];
-    this.store = createStore(this.reducer, applyMiddleware(
-      thunk as ThunkMiddleware<any, any>,
-      routerMiddleware(history),
-      ...middlewares
-    ));
-
-    console.log('REducer:');
-    console.log(rootReducer);
-    console.log(this.reducer);
+    this.store = new AppStore<S,A>(this);
+    this.history = createBrowserHistory();
   }
 
   render() {
@@ -65,15 +46,14 @@ export abstract class App {
     let component = this.getComponent();
 
     ReactDOM.render((
-      <Provider store={this.store}>
+      <Provider store={this.store.store}>
         { component }
       </Provider>
     ), this.getElement());
   }
 
-  getElement() {
-    return document.getElementById(this.appHandle);
-  }
+  getElement() { return document.getElementById(this.appHandle); }
 
   abstract getComponent():any;
+  abstract getReducer():Reducer<S,A>;
 }
