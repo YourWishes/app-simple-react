@@ -24,7 +24,7 @@
 import '@babel/polyfill';
 
 import * as React from 'react';
-import { ReactDOM } from 'react-dom';
+import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Action, Reducer } from 'redux';
 import { AppStore, AppStoreOwner }  from '@yourwishes/app-store';
