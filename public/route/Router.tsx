@@ -38,6 +38,12 @@ export interface RouterProps {
 export const ProductionRouter = (props:RouterProps) => <BrowserRouter {...props} />;
 export const DevelopmentRouter = (props:RouterProps) => <HashRouter {...props} />;
 
+export const getRouterPath = (path:string) => {
+  if(!PRODUCTION) return `/#${path}`;
+  return path;
+}
+
+
 export const Router = (props:RouterProps) => {
   //ConnectedRouter provides the store manipulation
   //Router element is automatically selected below to be
