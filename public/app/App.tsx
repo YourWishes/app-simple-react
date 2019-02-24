@@ -28,8 +28,7 @@ import * as ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Action, Reducer } from 'redux';
 import { AppStore, AppStoreOwner }  from '@yourwishes/app-store';
-import { History, Path, createBrowserHistory } from 'history';
-import { getRouterPath } from './../';
+import { History, createBrowserHistory } from 'history';
 
 export abstract class App<S,A extends Action> implements AppStoreOwner<S,A>  {
   appHandle:string;
@@ -40,17 +39,6 @@ export abstract class App<S,A extends Action> implements AppStoreOwner<S,A>  {
     this.appHandle = appHandle;
     this.store = new AppStore<S,A>(this);
     this.history = createBrowserHistory();
-  }
-
-  //history manipulation
-  push(path:Path) {
-    path = getRouterPath(path);
-    this.history.push(path);
-  }
-
-  replace(path:Path) {
-    path = getRouterPath(path);
-    this.history.replace(path);
   }
 
   //Component rendering

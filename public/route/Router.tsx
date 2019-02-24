@@ -23,7 +23,7 @@
 
 import * as React from 'react';
 import { History } from 'history'
-import { HashRouter, BrowserRouter, withRouter, Switch, RouteComponentProps } from 'react-router-dom';
+import { Router as ReactRouter, withRouter, Switch, RouteComponentProps } from 'react-router-dom';
 
 //General switch wrapper.
 export const RouteSwitch = withRouter((props:RouteComponentProps) => {
@@ -35,13 +35,6 @@ export interface RouterProps {
   history:History;
   children?:React.ReactNode;
 };
-export const ProductionRouter = (props:RouterProps) => <BrowserRouter {...props} />;
-export const DevelopmentRouter = (props:RouterProps) => <HashRouter {...props} />;
-
-export const getRouterPath = (path:string) => {
-  if(!PRODUCTION) return `/#${path}`;
-  return path;
-}
 
 
 export const Router = (props:RouterProps) => {
@@ -52,14 +45,14 @@ export const Router = (props:RouterProps) => {
   //routes is the children of this object.
 
   //Select Router type
-  let RouterElement = ProductionRouter;
-  if(!PRODUCTION) RouterElement = DevelopmentRouter;
+  //let RouterElement = ProductionRouter;
+  //if(!PRODUCTION) RouterElement = DevelopmentRouter;
 
   return (
-    <RouterElement {...props}>
+    <ReactRouter {...props}>
       <RouteSwitch>
         { props.children }
       </RouteSwitch>
-    </RouterElement>
+    </ReactRouter>
   );
 }
