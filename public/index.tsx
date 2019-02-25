@@ -24,4 +24,5 @@
 /// <reference path="./definitions.d.ts" />
 
 export * from './app/App';
+export * from './image/Image';
 export * from './route/';
