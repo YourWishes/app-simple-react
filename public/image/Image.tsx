@@ -54,8 +54,6 @@ export interface ImageProps {
 export const Image = (props:ImageProps) => {
   let { src, alt, width, height, maxWidth, className } = props;
 
-  console.log(src);
-
   //Sources
   let sources:ResponsiveImageSource[] = [];
 
