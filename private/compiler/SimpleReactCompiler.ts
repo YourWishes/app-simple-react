@@ -27,11 +27,11 @@ import * as fs from 'fs';
 import * as path from 'path';
 
 //Remember, this will be compiled into;
-///./node_modules/@yourwishes/app-simple-react/dist/compiler
+///./node_modules/@yourwishes/app-simple-react/dist/private/compiler
 //where ./ is the root folder
 //We are trying to access OUR /private folder
-// ../ = dist .../ = root
-export const TEMPLATE_INPUT_PATH = path.resolve(__dirname, './../../private/compiler/template.html');
+// ../ = private ../ = dist ../ = root
+export const TEMPLATE_INPUT_PATH = path.resolve(__dirname, './../../../private/compiler/template.html');
 export const TEMPLATE_OUTPUT_PATH = path.resolve(__dirname, './template.html');
 export const HANDLEBAR_REGEX = /{{\s*[\w\.]+\s*}}/g;
 

@@ -5,13 +5,16 @@
     "sourceMap": true,
     "declaration": true,
     "typeRoots": [ "./node_modules/@types" ],
-    "jsx": "React"
+    "jsx": "React",
+    "outDir": "./dist/"
   },
   "files": [
-    "./definitions.d.ts"
+    "./public/definitions.d.ts"
   ],
   "include": [
-    "index.tsx"
+    "./private/**/*.ts",
+    "./public/**/*.tsx",
+    "./public/**/*.ts"
   ],
   "exclude": [
     "node_modules",

@@ -21,6 +21,11 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-export * from './app/';
-export * from './compiler/';
-export * from './module/';
+import { IReactApp } from '@yourwishes/app-react';
+import { SimpleReactModule } from './../module/';
+import { SimpleReactCompiler } from './../compiler/';
+
+export interface ISimpleReactApp extends IReactApp {
+  server:SimpleReactModule;
+  getCompiler():SimpleReactCompiler;
+}

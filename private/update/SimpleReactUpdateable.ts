@@ -21,6 +21,18 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-export * from './app/';
-export * from './compiler/';
-export * from './module/';
+import { ModuleUpdateable, NPMPackage } from '@yourwishes/app-base';
+import { ISimpleReactApp } from './../app/';
+
+export class SimpleReactUpdateable extends ModuleUpdateable {
+  app:ISimpleReactApp;
+
+  constructor(app:ISimpleReactApp) {
+    super();
+    this.app = app;
+  }
+
+  getPackage():NPMPackage {
+    return require('./../../package.json');
+  }
+}

@@ -21,6 +21,17 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-export * from './app/';
-export * from './compiler/';
-export * from './module/';
+import { ReactModule } from '@yourwishes/app-react';
+import { ISimpleReactApp } from './../app/';
+import { SimpleReactUpdateable } from './../update';
+
+export class SimpleReactModule extends ReactModule {
+  app:ISimpleReactApp;
+
+
+  constructor(app:ISimpleReactApp) {
+    super(app);
+
+    app.updateChecker.addUpdateable(new SimpleReactUpdateable(app));
+  }
+}
