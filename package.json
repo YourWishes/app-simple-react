@@ -1,6 +1,6 @@
 {
   "name": "@yourwishes/app-simple-react",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "",
   "main": "dist/private/index.js",
   "scripts": {
@@ -25,10 +25,10 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.2.5",
-    "@yourwishes/app-base": "^1.4.1",
-    "@yourwishes/app-react": "^1.2.0",
-    "@yourwishes/app-socket": "^1.1.5",
-    "@yourwishes/app-store": "^0.1.0",
+    "@yourwishes/app-base": "^1.4.2",
+    "@yourwishes/app-react": "^1.2.1",
+    "@yourwishes/app-socket": "^1.2.1",
+    "@yourwishes/app-store": "^0.2.5",
     "history": "^4.7.2",
     "html-webpack-plugin": "^3.2.0",
     "react-loadable": "^5.5.0",

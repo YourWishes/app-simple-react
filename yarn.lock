@@ -596,13 +596,6 @@
     lodash "^4.17.11"
     to-fast-properties "^2.0.0"
 
-"@martin_hotell/rex-tils@^2.1.1":
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/@martin_hotell/rex-tils/-/rex-tils-2.1.1.tgz#3d90356d91311f11ae1ccf9b32cfb5a1c1744597"
-  optionalDependencies:
-    react "^16.5.2"
-    rxjs "^6.3.3"
-
 "@types/anymatch@*":
   version "1.3.1"
   resolved "https://registry.yarnpkg.com/@types/anymatch/-/anymatch-1.3.1.tgz#336badc1beecb9dacc38bea2cf32adf627a8421a"
@@ -867,24 +860,24 @@
   dependencies:
     "@yourwishes/app-base" "^1.1.1"
 
-"@yourwishes/app-base@^1.1.1", "@yourwishes/app-base@^1.3.0", "@yourwishes/app-base@^1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-base/-/app-base-1.4.1.tgz#02836e763fa31f791c47cb72f1af781b32888bef"
+"@yourwishes/app-base@^1.1.1", "@yourwishes/app-base@^1.4.1", "@yourwishes/app-base@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-base/-/app-base-1.4.2.tgz#0d370603d6db34b140375d33fcaf95724564343a"
   dependencies:
     cross-fetch "^3.0.1"
     node-cache "^4.2.0"
 
-"@yourwishes/app-react@^1.2.0":
-  version "1.2.0"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-react/-/app-react-1.2.0.tgz#5e068bc3f0696c94b656218b13884029c2a1192a"
+"@yourwishes/app-react@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-react/-/app-react-1.2.1.tgz#41f138d0c1cb8a7cae637dd2382892b2c67df0d5"
   dependencies:
     "@babel/core" "^7.2.2"
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"
     "@babel/polyfill" "^7.2.5"
     "@babel/preset-env" "^7.2.3"
     "@babel/preset-react" "^7.0.0"
-    "@yourwishes/app-base" "^1.4.1"
-    "@yourwishes/app-server" "^1.1.5"
+    "@yourwishes/app-base" "^1.4.2"
+    "@yourwishes/app-server" "^1.2.0"
     awesome-typescript-loader "^5.2.1"
     babel-loader "^8.0.5"
     css-loader "^2.1.0"
@@ -905,30 +898,29 @@
     url-loader "^1.1.2"
     webpack "^4.28.3"
 
-"@yourwishes/app-server@^1.1.0", "@yourwishes/app-server@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-server/-/app-server-1.1.5.tgz#019df53eca813facd20c0f3fc57ca7c8f50aafdc"
+"@yourwishes/app-server@^1.1.5", "@yourwishes/app-server@^1.2.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-server/-/app-server-1.2.0.tgz#4639a3ad528a1edcaea339e0481ed55fd71b7959"
   dependencies:
     "@yourwishes/app-api" "^1.0.0"
-    "@yourwishes/app-base" "^1.4.1"
+    "@yourwishes/app-base" "^1.4.2"
     body-parser "^1.18.3"
     express "^4.16.4"
 
-"@yourwishes/app-socket@^1.1.5":
-  version "1.1.5"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-socket/-/app-socket-1.1.5.tgz#84fbace23187d9a8bbdf758c72bca14a666f26bc"
+"@yourwishes/app-socket@^1.2.1":
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-socket/-/app-socket-1.2.1.tgz#bc2c0e41b6072aefd52642ba777976c8576e1a61"
   dependencies:
     "@yourwishes/app-api" "^1.0.0"
-    "@yourwishes/app-base" "^1.3.0"
-    "@yourwishes/app-server" "^1.1.0"
+    "@yourwishes/app-base" "^1.4.1"
+    "@yourwishes/app-server" "^1.1.5"
     socket.io "^2.2.0"
     socketio-wildcard "^2.0.0"
 
-"@yourwishes/app-store@^0.1.0":
-  version "0.1.0"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-store/-/app-store-0.1.0.tgz#28ba95a23e8472a2ef5ec0c5ab6ee27306f2fd9e"
+"@yourwishes/app-store@^0.2.5":
+  version "0.2.5"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-store/-/app-store-0.2.5.tgz#2a59d652dc9993dee08daaf421eff96fa330655e"
   dependencies:
-    "@martin_hotell/rex-tils" "^2.1.1"
     redux "^4.0.1"
     redux-logger "^3.0.6"
     redux-thunk "^2.3.0"
@@ -1686,8 +1678,8 @@ caniuse-api@^3.0.0:
     lodash.uniq "^4.5.0"
 
 caniuse-lite@^1.0.0, caniuse-lite@^1.0.30000939:
-  version "1.0.30000942"
-  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000942.tgz#454139b28274bce70bfe1d50c30970df7430c6e4"
+  version "1.0.30000943"
+  resolved "https://registry.yarnpkg.com/caniuse-lite/-/caniuse-lite-1.0.30000943.tgz#00b25bd5808edc2ed1cfb53533a6a6ff6ca014ee"
 
 capture-exit@^1.2.0:
   version "1.2.0"
@@ -1860,6 +1852,10 @@ combined-stream@^1.0.6, combined-stream@~1.0.6:
 commander@2.17.x, commander@~2.17.1:
   version "2.17.1"
   resolved "https://registry.yarnpkg.com/commander/-/commander-2.17.1.tgz#bd77ab7de6de94205ceacc72f1716d29f20a77bf"
+
+commander@^2.19.0:
+  version "2.19.0"
+  resolved "https://registry.yarnpkg.com/commander/-/commander-2.19.0.tgz#f6198aa84e5b83c46054b94ddedbfed5ee9ff12a"
 
 commondir@^1.0.1:
   version "1.0.1"
@@ -5717,7 +5713,7 @@ react-router@^4.3.1:
     prop-types "^15.6.1"
     warning "^4.0.1"
 
-react@^16.5.2, react@^16.7.0:
+react@^16.7.0:
   version "16.8.4"
   resolved "https://registry.yarnpkg.com/react/-/react-16.8.4.tgz#fdf7bd9ae53f03a9c4cd1a371432c206be1c4768"
   dependencies:
@@ -6008,12 +6004,6 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   resolved "https://registry.yarnpkg.com/run-queue/-/run-queue-1.0.3.tgz#e848396f057d223f24386924618e25694161ec47"
   dependencies:
     aproba "^1.1.1"
-
-rxjs@^6.3.3:
-  version "6.4.0"
-  resolved "https://registry.yarnpkg.com/rxjs/-/rxjs-6.4.0.tgz#f3bb0fe7bda7fb69deac0c16f17b50b0b8790504"
-  dependencies:
-    tslib "^1.9.0"
 
 safe-buffer@5.1.2, safe-buffer@^5.0.1, safe-buffer@^5.1.0, safe-buffer@^5.1.1, safe-buffer@^5.1.2, safe-buffer@~5.1.0, safe-buffer@~5.1.1:
   version "5.1.2"
@@ -6342,7 +6332,7 @@ source-map-support@^0.4.15:
   dependencies:
     source-map "^0.5.6"
 
-source-map-support@^0.5.3, source-map-support@^0.5.6, source-map-support@~0.5.9:
+source-map-support@^0.5.3, source-map-support@^0.5.6, source-map-support@~0.5.10:
   version "0.5.10"
   resolved "https://registry.yarnpkg.com/source-map-support/-/source-map-support-0.5.10.tgz#2214080bc9d51832511ee2bab96e3c2f9353120c"
   dependencies:
@@ -6673,12 +6663,12 @@ terser-webpack-plugin@^1.1.0, terser-webpack-plugin@^1.2.1:
     worker-farm "^1.5.2"
 
 terser@^3.16.1:
-  version "3.16.1"
-  resolved "https://registry.yarnpkg.com/terser/-/terser-3.16.1.tgz#5b0dd4fa1ffd0b0b43c2493b2c364fd179160493"
+  version "3.17.0"
+  resolved "https://registry.yarnpkg.com/terser/-/terser-3.17.0.tgz#f88ffbeda0deb5637f9d24b0da66f4e15ab10cb2"
   dependencies:
-    commander "~2.17.1"
+    commander "^2.19.0"
     source-map "~0.6.1"
-    source-map-support "~0.5.9"
+    source-map-support "~0.5.10"
 
 test-exclude@^4.2.1:
   version "4.2.3"
