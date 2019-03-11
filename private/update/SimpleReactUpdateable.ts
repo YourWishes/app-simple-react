@@ -33,6 +33,6 @@ export class SimpleReactUpdateable extends ModuleUpdateable {
   }
 
   getPackage():NPMPackage {
-    return require('./../../package.json');
+    return require('./../../../package.json');
   }
 }
