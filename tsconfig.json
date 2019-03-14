@@ -9,12 +9,12 @@
     "outDir": "./dist/"
   },
   "files": [
-    "./public/definitions.d.ts"
+    "./src/public/definitions.d.ts"
   ],
   "include": [
-    "./private/**/*.ts",
-    "./public/**/*.tsx",
-    "./public/**/*.ts"
+    "./src/private/**/*.ts",
+    "./src/public/**/*.tsx",
+    "./src/public/**/*.ts"
   ],
   "exclude": [
     "node_modules",
