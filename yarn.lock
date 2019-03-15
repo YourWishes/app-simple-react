@@ -865,9 +865,9 @@
     cross-fetch "^3.0.1"
     node-cache "^4.2.0"
 
-"@yourwishes/app-react@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-react/-/app-react-2.0.0.tgz#6c9f0e7417f6b70e988b178ad1e4056e41a21b38"
+"@yourwishes/app-react@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-react/-/app-react-2.0.1.tgz#b1023ff37b01646c71ad1b5159d9d0db01a43a31"
   dependencies:
     "@babel/core" "^7.2.2"
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"
@@ -905,9 +905,9 @@
     body-parser "^1.18.3"
     express "^4.16.4"
 
-"@yourwishes/app-socket@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-socket/-/app-socket-2.0.0.tgz#65de06e614718edc4397daf184b51e9eae0543b8"
+"@yourwishes/app-socket@^2.0.1":
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-socket/-/app-socket-2.0.1.tgz#8d2001163063d1315a7f8728dac3102ba529a90b"
   dependencies:
     "@yourwishes/app-api" "^1.1.0"
     "@yourwishes/app-base" "^2.0.0"

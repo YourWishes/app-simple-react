@@ -15,8 +15,8 @@ class DummyApp extends App implements ISimpleReactApp {
 
 const dummyApp = new DummyApp();
 
-describe('getPackage', () => {
+describe('loadPackage', () => {
   it('should return the package data', () => {
-    expect(new SimpleReactModule(dummyApp).getPackage()).toHaveProperty('name', '@yourwishes/app-simple-react');
+    expect(new SimpleReactModule(dummyApp).package).toHaveProperty('name', '@yourwishes/app-simple-react');
   });
 });

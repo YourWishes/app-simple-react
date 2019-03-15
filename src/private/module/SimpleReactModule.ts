@@ -34,5 +34,5 @@ export class SimpleReactModule extends Module {
   async init():Promise<void> {}
   async destroy():Promise<void> {}
 
-  getPackage():NPMPackage { return require('./../../../package.json'); }
+  loadPackage():NPMPackage { return require('./../../../package.json'); }
 }
