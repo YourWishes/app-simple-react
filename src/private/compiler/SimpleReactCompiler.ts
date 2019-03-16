@@ -31,7 +31,7 @@ import * as path from 'path';
 //where ./ is the root folder
 //We are trying to access OUR /private folder
 // ../ = private ../ = dist ../ = root
-export const TEMPLATE_INPUT_PATH = path.resolve(__dirname, './../../../private/compiler/template.html');
+export const TEMPLATE_INPUT_PATH = path.resolve(__dirname, './../../../src/private/compiler/template.html');
 export const TEMPLATE_OUTPUT_PATH = path.resolve(__dirname, './template.html');
 export const HANDLEBAR_REGEX = /{{\s*[\w\.]+\s*}}/g;
 
