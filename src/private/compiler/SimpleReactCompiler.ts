@@ -25,6 +25,7 @@ import { WebpackCompiler } from '@yourwishes/app-react';
 import * as HtmlWebpackPlugin from 'html-webpack-plugin';
 import * as fs from 'fs';
 import * as path from 'path';
+import * as webpack from 'webpack';
 
 //Remember, this will be compiled into;
 ///./node_modules/@yourwishes/app-simple-react/dist/private/compiler
@@ -78,10 +79,10 @@ export class SimpleReactCompiler extends WebpackCompiler {
     return template;
   }
 
-  generateConfiguration(isProduction:boolean) {
+  generateConfiguration(isProduction:boolean, extra:webpack.Configuration={}) {
     //Now replace HTML variables
     let template = this.generateTemplate(this.variables);
-    let config = super.generateConfiguration(isProduction);
+    let config = super.generateConfiguration(isProduction, extra);
 
     //Now we need to output the template into the /dist/private folder
     if(fs.existsSync(TEMPLATE_OUTPUT_PATH)) fs.unlinkSync(TEMPLATE_OUTPUT_PATH);
