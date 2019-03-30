@@ -12,8 +12,11 @@
     "url": "git+https://github.com/YourWishes/app-simple-react.git"
   },
   "keywords": [
-    "Shopify",
-    "example",
+    "simple",
+    "react",
+    "compiler",
+    "react",
+    "redux",
     "app",
     "Dominic",
     "Masters"
