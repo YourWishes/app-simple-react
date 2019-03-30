@@ -1,20 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es5",
+    "target": "es2018",
     "module": "commonjs",
     "sourceMap": true,
     "declaration": true,
     "typeRoots": [ "./node_modules/@types" ],
-    "jsx": "React",
-    "outDir": "./dist/"
+    "outDir": "./../../dist/private/"
   },
-  "files": [
-    "./src/public/definitions.d.ts"
-  ],
   "include": [
-    "./src/private/**/*.ts",
-    "./src/public/**/*.tsx",
-    "./src/public/**/*.ts"
+    "./index.ts"
   ],
   "exclude": [
     "node_modules",

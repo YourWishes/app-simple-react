@@ -5,7 +5,7 @@
   "main": "dist/private/index.js",
   "scripts": {
     "test": "jest",
-    "build": "tsc -p ./"
+    "build": "tsc -p ./src/private/ && tsc -p ./src/public/"
   },
   "repository": {
     "type": "git",
@@ -42,7 +42,7 @@
   },
   "devDependencies": {
     "@types/html-webpack-plugin": "^3.2.0",
-    "@types/jest": "^23.3.10",
+    "@types/jest": "^24.0.11",
     "@types/node": "^10.12.12",
     "@types/react-dom": "^16.8.2",
     "@types/react-helmet": "^5.0.8",
