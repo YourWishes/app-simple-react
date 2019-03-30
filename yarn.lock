@@ -873,9 +873,16 @@
     cross-fetch "^3.0.1"
     node-cache "^4.2.0"
 
-"@yourwishes/app-react@^2.1.2":
-  version "2.1.2"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-react/-/app-react-2.1.2.tgz#4cfcb2da6ba1f959d939f9faf48dfc88efd55a13"
+"@yourwishes/app-base@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-base/-/app-base-2.0.2.tgz#7de6806e1ce72a668e50ac616634f3d6af12e9a9"
+  dependencies:
+    cross-fetch "^3.0.1"
+    node-cache "^4.2.0"
+
+"@yourwishes/app-react@^2.1.3":
+  version "2.1.3"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-react/-/app-react-2.1.3.tgz#49809a5b65bb57ae3c2019b670dad3ad4ac456e4"
   dependencies:
     "@babel/core" "^7.2.2"
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"
@@ -883,7 +890,7 @@
     "@babel/preset-env" "^7.2.3"
     "@babel/preset-react" "^7.0.0"
     "@yourwishes/app-base" "^2.0.1"
-    "@yourwishes/app-server" "^2.0.1"
+    "@yourwishes/app-server" "^2.0.2"
     awesome-typescript-loader "^5.2.1"
     babel-loader "^8.0.5"
     css-loader "^2.1.0"
@@ -904,12 +911,12 @@
     url-loader "^1.1.2"
     webpack "^4.28.3"
 
-"@yourwishes/app-server@^2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-server/-/app-server-2.0.1.tgz#be62c89eeb6fd118d3e29ff8743a6dfb7065d9fb"
+"@yourwishes/app-server@^2.0.2":
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-server/-/app-server-2.0.2.tgz#9782d68957a6088a65ad86cfefa3d778a5c33759"
   dependencies:
     "@yourwishes/app-api" "^1.1.0"
-    "@yourwishes/app-base" "^2.0.1"
+    "@yourwishes/app-base" "^2.0.2"
     body-parser "^1.18.3"
     express "^4.16.4"
 
