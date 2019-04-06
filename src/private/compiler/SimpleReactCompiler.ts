@@ -61,32 +61,15 @@ export class SimpleReactCompiler extends WebpackCompiler {
 
   }
 
-  generateTemplate(variables:object) {
-    //Duplicate template
-    let template = ''+this.template;
-
-    //Get used variables (includes braces)
-    let used:string[] = template.match(/{{\s*[\w\.]+\s*}}/g);
-
-    used.forEach(uv => {
-      //For each used variable
-      let [ key ] = uv.match(/[\w\.]+/);
-      let value = '';
-      if(variables[key]) value = variables[key];
-      template = template.replace(uv, value);
-    });
-
-    return template;
-  }
+  getTemplateVariables() { return this.variables; }
 
   generateConfiguration(isProduction:boolean, extra:webpack.Configuration={}) {
     //Now replace HTML variables
-    let template = this.generateTemplate(this.variables);
     let config = super.generateConfiguration(isProduction, extra);
 
     //Now we need to output the template into the /dist/private folder
     if(fs.existsSync(TEMPLATE_OUTPUT_PATH)) fs.unlinkSync(TEMPLATE_OUTPUT_PATH);
-    fs.writeFileSync(TEMPLATE_OUTPUT_PATH, template);
+    fs.writeFileSync(TEMPLATE_OUTPUT_PATH, this.template);
 
     //Now we need to rewrite the standard compiler to have the input index file be
     //the one we just generated...
