@@ -8,15 +8,11 @@ class DummyApp extends App implements ISimpleReactApp {
   react:ReactModule;
   simpleReact: SimpleReactModule;
 
-  getCompiler():SimpleReactCompiler {
-    return null;
-  }
+  getCompiler():SimpleReactCompiler { return null; }
 }
-
-const dummyApp = new DummyApp();
 
 describe('loadPackage', () => {
   it('should return the package data', () => {
-    expect(new SimpleReactModule(dummyApp).package).toHaveProperty('name', '@yourwishes/app-simple-react');
+    expect(new SimpleReactModule(new DummyApp()).package).toHaveProperty('name', '@yourwishes/app-simple-react');
   });
 });
