@@ -1,6 +1,6 @@
 module.exports = {
   "roots": [
-    "<rootDir>"
+    "<rootDir>/src/private"
   ],
   "transform": {
     "^.+\\.tsx?$": "ts-jest"
@@ -13,4 +13,9 @@ module.exports = {
     "jsx",
     "json"
   ],
+  "globals": {
+    "ts-jest": {
+      tsConfig: 'tsconfig.test.json'
+    }
+  }
 }
