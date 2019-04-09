@@ -1,6 +1,6 @@
 {
   "name": "@yourwishes/app-simple-react",
-  "version": "2.2.0",
+  "version": "2.2.2",
   "description": "",
   "main": "dist/private/index.js",
   "scripts": {
@@ -27,12 +27,14 @@
     "url": "https://github.com/YourWishes/app-simple-react/issues"
   },
   "dependencies": {
-    "@babel/polyfill": "^7.2.5",
-    "@yourwishes/app-base": "^2.0.2",
-    "@yourwishes/app-react": "^2.1.4",
-    "@yourwishes/app-store": "^1.0.0",
+    "@types/react-helmet": "^5.0.8",
+    "@types/react-loadable": "^5.5.0",
+    "@types/react-router": "^4.4.3",
+    "@types/react-router-dom": "^4.3.1",
+    "@yourwishes/app-base": "^2.0.3",
+    "@yourwishes/app-react": "^2.2.0",
+    "@yourwishes/app-store": "^1.0.1",
     "history": "^4.7.2",
-    "html-webpack-plugin": "^3.2.0",
     "react-loadable": "^5.5.0",
     "react-redux": "^6.0.0",
     "react-router": "^4.3.1",
@@ -41,16 +43,7 @@
     "redux-thunk": "^2.3.0"
   },
   "devDependencies": {
-    "@types/html-webpack-plugin": "^3.2.0",
     "@types/jest": "^24.0.11",
-    "@types/node": "^10.12.12",
-    "@types/react-dom": "^16.8.2",
-    "@types/react-helmet": "^5.0.8",
-    "@types/react-loadable": "^5.5.0",
-    "@types/react-redux": "7.0.1",
-    "@types/react-router": "^4.4.3",
-    "@types/react-router-dom": "^4.3.1",
-    "@types/webpack": "^4.4.25",
     "jest": "^23.6.0",
     "ts-jest": "^23.10.5",
     "typescript": "^3.4.2"
