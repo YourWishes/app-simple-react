@@ -5,7 +5,7 @@
     "sourceMap": true,
     "declaration": true,
     "typeRoots": [ "./node_modules/@types" ],
-    "outDir": "./dist/private/"
+    "outDir": "./../../dist/private/"
   },
   "include": [
     "./index.ts"
