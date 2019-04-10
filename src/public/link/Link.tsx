@@ -22,14 +22,32 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
+import { NavLink, NavLinkProps } from 'react-router-dom';
 
-export interface LinkProps extends React. {
-  to:string,
-  className?:string,
-
+export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement|HTMLButtonElement> {
+  to?:string,
+  activeClassName?:string,
+  exact?:boolean
 }
 
+export const isRelativeUrl = (s:string) =>  !/^(?:[a-z]+:)?\/\//i.test(s);
 
 export const Link = (props:LinkProps) => {
+  let LinkElement:(string|typeof NavLink) = 'button';
+  let np:any = {...props};
 
+  ['to','children'].forEach(e => delete np[e]);
+
+  if(props.to) {
+    if(isRelativeUrl(props.to)) {
+      np['to'] = props.to;
+      LinkElement = NavLink;
+      console.log('NavLink');
+    } else {
+      LinkElement = 'a';
+      np['href'] = props.to;
+    }
+  }
+
+  return React.createElement(LinkElement, np, props.children || null);
 };
