@@ -50,9 +50,7 @@ export const Router = (props:RouterProps) => {
 
   return (
     <ReactRouter {...props}>
-      <RouteSwitch>
-        { props.children }
-      </RouteSwitch>
+      { props.children }
     </ReactRouter>
   );
 }
