@@ -36,13 +36,12 @@ export const Link = (props:LinkProps) => {
   let LinkElement:(string|typeof NavLink) = 'button';
   let np:any = {...props};
 
-  ['to','children'].forEach(e => delete np[e]);
+  ['to'].forEach(e => delete np[e]);
 
   if(props.to) {
     if(isRelativeUrl(props.to)) {
       np['to'] = props.to;
       LinkElement = NavLink;
-      console.log('NavLink');
     } else {
       LinkElement = 'a';
       np['href'] = props.to;
