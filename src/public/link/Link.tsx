@@ -49,5 +49,5 @@ export const Link = (props:LinkProps) => {
     }
   }
 
-  return React.createElement(LinkElement, np, props.children || null);
+  return <LinkElement {...np} />;
 };
