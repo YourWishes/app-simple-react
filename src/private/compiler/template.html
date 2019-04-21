@@ -13,11 +13,13 @@
     <meta name="keywords" content="<%= htmlWebpackPlugin.options.keywords %>" />
     <meta name="description" content="<%= htmlWebpackPlugin.options.description %>" />
 
+    <%= htmlWebpackPlugin.options.header %>
     <%= htmlWebpackPlugin.options.gtag %>
   </head>
 
   <body>
     <div id="<%= htmlWebpackPlugin.options.app_handle %>">
+      <%= htmlWebpackPlugin.options.page_content %>
     </div>
   </body>
 </html>

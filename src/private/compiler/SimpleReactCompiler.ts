@@ -37,12 +37,15 @@ export const TEMPLATE_OUTPUT_PATH = path.resolve(__dirname, './template.html');
 export const HANDLEBAR_REGEX = /{{\s*[\w\.]+\s*}}/g;
 
 export interface SimpleReactCompilerVariables {
-  gtag?:string,
   title:string,
   keywords:string,
   description:string,
   app_handle:string,
-  language:string
+  language:string,
+
+  header?:string,
+  gtag?:string,
+  page_content?:string,
 }
 
 export class SimpleReactCompiler extends WebpackCompiler {
