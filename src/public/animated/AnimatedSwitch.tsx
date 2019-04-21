@@ -22,32 +22,35 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
-import { History } from 'history';
-import { RouterProps as NativeRouterProps } from 'react-router';
-import { Router as ReactRouter } from 'react-router-dom';
+import { RouteSwitch, Route } from './../route/';
+import { TransitionGroup, CSSTransition } from 'react-transition-group';
+import { AnimatedRoute } from './AnimatedRoute';
 
-export type RouterProps = (
+//Children should be the animated Routes to be transitioned.
+//Note that if using a loaded route you will need to have a wrapper that can
+//safely receive the props while the component is still loading, especially
+//if it is unloaded early.
+export type AnimatedSwitchProps = (
   {
-    children?:React.ReactChild
-  } & NativeRouterProps
+    children:React.ReactNode
+  } & CSSTransition.CSSTransitionProps
 );
 
-export const Router = (props:RouterProps) => {
-  //ConnectedRouter provides the store manipulation
-  //Router element is automatically selected below to be
-  //either HashRouter or BrowserRouter depending on dev mode or not.
-  //The route switch provides the wrapper for the routes
-  //routes is the children of this object.
+export const AnimatedSwitch = (props:AnimatedSwitchProps) => {
+  //We wrap the transition in a route to help the CSS Transition work as intended
+  //This technically renders nothing, but provides all logic necessary, including
+  //A switch for routes, as well as the CSSTransition wrapper.
 
-  //Select Router type
-  //let RouterElement = ProductionRouter;
-  //if(!PRODUCTION) RouterElement = DevelopmentRouter;
-
+  //At the moment only CSS Trnaistions are supported.
   return (
-    <ReactRouter {...props}>
-      <>
-        { props.children }
-      </>
-    </ReactRouter>
+    <Route render={ ({location}) => (
+      <TransitionGroup component={null}>
+        <CSSTransition key={location.key} {...props}>
+          <RouteSwitch location={location}>
+            { props.children }
+          </RouteSwitch>
+        </CSSTransition>
+      </TransitionGroup>
+    )} />
   );
-}
+};

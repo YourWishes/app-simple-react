@@ -22,38 +22,29 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
-import * as Loadable from 'react-loadable';
-import { Route as ReactRoute, RouteProps as ReactRouteProps } from 'react-router-dom';
-import { LoadingComponentProps } from 'react-loadable';
+import {
+  RouteProps as NativeRouteProps, Route as NativeRoute
+} from 'react-router-dom';
+import { LoadableRoute, LoadableRouteProps } from './LoadableRoute';
 
-const LoadingComponent = (props:LoadingComponentProps) => {
-  let { error, pastDelay } = props;
-  if(error) return <div>{error}</div>;
-  if(pastDelay) return <div>Loading...</div>;
-  return null;
-};
+export type RouteProps<Props> = (
+  LoadableRouteProps<Props> | NativeRouteProps
+);
 
-export interface RouteProps<Props> extends ReactRouteProps {
-  //For Delayed Loading Components,
-  load?:any,
-  loadingComponent?:React.ComponentType<LoadingComponentProps> | (() => null),
-  render?:(props:any) => React.ReactElement<any>
-}
+export class Route<Props> extends React.Component<RouteProps<Props>> {
+  constructor(props:RouteProps<Props>) {
+    super(props);
+  }
 
-export const Route = (props:RouteProps<any>) => {
-  let { children, component, render } = props;
-  if(children || component || render) return <ReactRoute {...props}  />;
+  render() {
+    //Is this a loadable Route?
+    type LoadableType = LoadableRouteProps<Props>;
+    if((this.props as LoadableType).load) {
+      return <LoadableRoute<LoadableType> {...(this.props as LoadableType)} />;
+    }
 
-  //Default Loader
-  let loadingComponent = props.loadingComponent || LoadingComponent;
-
-  let LoadRender = (subProps:ReactRouteProps) => {
-    let CustomLoadable = Loadable({
-      loader: props.load,
-      loading: loadingComponent
-    });
-    return <CustomLoadable {...props} {...subProps} />
+    return (
+      <NativeRoute<RouteProps<Props>> {...this.props} />
+    );
   };
-
-  return <ReactRoute {...props} render={LoadRender} />;
-};
+}

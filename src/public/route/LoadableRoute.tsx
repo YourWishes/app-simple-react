@@ -21,12 +21,25 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-/// <reference path="./definitions.d.ts" />
+import * as React from 'react';
+import { Route, withRouter, RouteComponentProps, RouteProps } from 'react-router-dom';
+import { LoadableComponentProps, LoadableComponent } from './../load/';
 
-export * from './animated/';
-export * from './app/';
-export * from './image/';
-export * from './link/';
-export * from './load/';
-export * from './promise/';
-export * from './route/';
+export type LoadableRouteProps<Props> = (
+  LoadableComponentProps<Props> & RouteProps
+);
+
+export type LoadableRouteComponent<Props> = (
+  (props:LoadableRouteProps<Props>) => any
+);
+
+export const LoadableRoute = function<Props extends RouteProps>(props:LoadableRouteProps<Props>) {
+  return (
+    <Route<Props> {...props} render={(routeProps) => {
+      //TODO: There's something strange happening so I need to "make a new component"
+      //everytime render is called, otherwise react-router isn't working as expected...
+      let WrappedLoadable = withRouter(LoadableComponent);
+      return <WrappedLoadable {...props} {...routeProps} />
+    }} />
+  );
+};

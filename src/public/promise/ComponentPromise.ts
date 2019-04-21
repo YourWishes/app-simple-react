@@ -21,12 +21,22 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-/// <reference path="./definitions.d.ts" />
+export interface ComponentPromise<P> extends Promise<P> {
+  cancel:()=>void
+};
 
-export * from './animated/';
-export * from './app/';
-export * from './image/';
-export * from './link/';
-export * from './load/';
-export * from './promise/';
-export * from './route/';
+export const ComponentPromise = function<P>(promise:Promise<P>):ComponentPromise<P> {
+  let hasCancelled = false;
+
+  let prom:ComponentPromise<P> = new Promise<P>((resolve, reject) => {
+    promise.then( value => {
+      hasCancelled ? reject({ isCancelled: true, value }) : resolve(value);
+    }).catch( error => {
+      reject({ isCancelled: hasCancelled, error });
+    });
+  }) as ComponentPromise<P>;
+
+  (prom['cancel'] as any) = () => hasCancelled = true;
+
+  return prom;
+}
