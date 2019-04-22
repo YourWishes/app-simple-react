@@ -22,7 +22,6 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
-import { History } from 'history';
 import { RouterProps as NativeRouterProps } from 'react-router';
 import { Router as ReactRouter } from 'react-router-dom';
 

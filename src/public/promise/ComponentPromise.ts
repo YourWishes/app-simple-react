@@ -28,8 +28,8 @@ export interface ComponentPromise<P> extends Promise<P> {
 export const ComponentPromise = function<P>(promise:Promise<P>):ComponentPromise<P> {
   let hasCancelled = false;
 
-  let prom:ComponentPromise<P> = new Promise<P>((resolve, reject) => {
-    promise.then( value => {
+  const prom:ComponentPromise<P> = new Promise<P>((resolve, reject) => {
+    promise.then(value => {
       hasCancelled ? reject({ isCancelled: true, value }) : resolve(value);
     }).catch( error => {
       reject({ isCancelled: hasCancelled, error });

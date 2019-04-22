@@ -57,6 +57,8 @@ export class LoadableComponent<Props> extends React.Component<LoadableComponentP
       error: null
     });
 
+    if(this.loadingPromise) this.loadingPromise.cancel();
+    
     //Load and listen
     this.loadingPromise = ComponentPromise(this.props.load());
     this.loadingPromise.then(e => this.onLoaded(e)).catch(ex => this.onLoadError(ex));
@@ -74,7 +76,7 @@ export class LoadableComponent<Props> extends React.Component<LoadableComponentP
 
   onLoaded(e:LoadedComponent<Props>) {
     if(e.isCancelled) return;
-    
+
     //Loaded, use named export (or default)
     this.loadedComponent = e[this.props.loadedExport || 'default'];
     this.setState({

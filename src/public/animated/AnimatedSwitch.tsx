@@ -24,7 +24,26 @@
 import * as React from 'react';
 import { RouteSwitch, Route } from './../route/';
 import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { AnimatedRoute } from './AnimatedRoute';
+import { Location } from 'history';
+
+
+//Here we have a switch render wrapped to help stop route changes forcing a
+//re-render This was driving me insane.
+export interface AnimatedSwitchManagerProps {
+  children?:React.ReactNode,
+  location:Location
+}
+export class AnimatedSwitchManager extends React.Component<AnimatedSwitchManagerProps> {
+  constructor(props:AnimatedSwitchManagerProps) { super(props); }
+
+  shouldComponentUpdate(props:AnimatedSwitchManagerProps) {
+    return props.location.pathname !== this.props.location.pathname;
+  }
+
+  render() {
+    return <>{ this.props.children }</>;
+  }
+}
 
 //Children should be the animated Routes to be transitioned.
 //Note that if using a loaded route you will need to have a wrapper that can
@@ -43,14 +62,18 @@ export const AnimatedSwitch = (props:AnimatedSwitchProps) => {
 
   //At the moment only CSS Trnaistions are supported.
   return (
-    <Route render={ ({location}) => (
-      <TransitionGroup component={null}>
-        <CSSTransition key={location.key} {...props}>
-          <RouteSwitch location={location}>
-            { props.children }
-          </RouteSwitch>
-        </CSSTransition>
-      </TransitionGroup>
-    )} />
+    <Route render={ ({location}) => {
+      return (
+        <TransitionGroup component={null}>
+          <CSSTransition key={location.key} {...props}>
+            <RouteSwitch location={location}>
+              <AnimatedSwitchManager location={location}>
+                { props.children }
+              </AnimatedSwitchManager>
+            </RouteSwitch>
+          </CSSTransition>
+        </TransitionGroup>
+      );
+    }} />
   );
 };
