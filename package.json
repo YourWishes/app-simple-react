@@ -1,6 +1,6 @@
 {
   "name": "@yourwishes/app-simple-react",
-  "version": "2.6.0",
+  "version": "2.6.1",
   "description": "",
   "main": "dist/private/index.js",
   "scripts": {

@@ -24,7 +24,8 @@ export type LoadablePlaceholder<Props> = (
 export type LoadableComponentProps<P> = {
   load:Loader<P>,
   loading?:LoadablePlaceholder<P>,
-  loadedExport?:string
+  loadedExport?:string,
+  simulate?:boolean|number
 } & P;
 
 export type LoadableComponentState = {

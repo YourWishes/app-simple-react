@@ -34,7 +34,7 @@ export const DummyPlaceholder = (props:LoadablePlaceholderProps<any>) => (
   <>{props.error||''}</>
 );
 
-export class LoadableComponent<Props> extends React.Component<LoadableComponentProps<Props>,LoadableComponentState> {
+export class LoadableComponent<Props> extends React.PureComponent<LoadableComponentProps<Props>,LoadableComponentState> {
   loadedComponent:LoadedComponent<Props>;
   loadingPromise:ComponentPromise<any>;
 
@@ -47,6 +47,7 @@ export class LoadableComponent<Props> extends React.Component<LoadableComponentP
       loaded: false,
       error: null
     };
+
   }
 
   componentDidMount() {
@@ -57,14 +58,34 @@ export class LoadableComponent<Props> extends React.Component<LoadableComponentP
       error: null
     });
 
+    //Cancel any pending promises, may exist but unlikely
     if(this.loadingPromise) this.loadingPromise.cancel();
-    
-    //Load and listen
-    this.loadingPromise = ComponentPromise(this.props.load());
+
+    //Load and listen, we can allow a simulated load here
+    if(this.props.simulate) {
+      //You may pass either a bool or a number for simulating a load
+      let simu = parseInt(`${this.props.simulate}`);
+      if(isNaN(simu)) simu = 1000;
+
+      //Make a fake promise wrapper
+      this.loadingPromise = ComponentPromise( (async () => {
+        //Here's where we simulate the load
+        await new Promise(resolve => setTimeout(resolve, simu));
+
+        //Do a normal load, so keep in mind this may also take some time..
+        //e.g. if I pass 1000 it won't REALLY take 1 second, it may take 1.013 seconds
+        return await this.props.load();
+      })() );
+    } else {
+      this.loadingPromise = ComponentPromise(this.props.load());
+    }
+
+    //Now waiting for the promise to finish
     this.loadingPromise.then(e => this.onLoaded(e)).catch(ex => this.onLoadError(ex));
   }
 
   componentWillUnmount() {
+    //When we unmount cancel any pending promises, doesn't ACTUALLY cancel
     if(this.loadingPromise) this.loadingPromise.cancel();
 
     //Unmounting, stop listening (but this won't stop the load)
@@ -75,10 +96,13 @@ export class LoadableComponent<Props> extends React.Component<LoadableComponentP
   }
 
   onLoaded(e:LoadedComponent<Props>) {
+    //Cancelled? Do nothing.
     if(e.isCancelled) return;
 
     //Loaded, use named export (or default)
     this.loadedComponent = e[this.props.loadedExport || 'default'];
+
+    //Now update the state, this will start using the loaded component.
     this.setState({
       loaded: true,
       loading: false,
@@ -87,6 +111,7 @@ export class LoadableComponent<Props> extends React.Component<LoadableComponentP
   }
 
   onLoadError(e:any) {
+    //Cancelled... do nothing
     if(e.isCancelled) return;
 
     //Error

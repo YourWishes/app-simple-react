@@ -22,7 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
-import { Route, RouteProps, LoadableRouteProps } from './../route/';
+import { Route, RouteProps } from './../route/';
 
 //Types
 //Animated Route will receive, directly, the classNames from the transition.
@@ -54,16 +54,17 @@ export class AnimatedRoute<Props> extends React.Component<AnimatedRouteProps<Pro
     super(props);
   }
 
+
+
   render() {
     let WrappedComponent = this.props.animateWrapper || AnimatedRouteWrapper;
-
     return <Route
       {...this.props} load={undefined} component={undefined}
-      render={renderProps => (
-        <WrappedComponent {...this.props}>
-          <Route {...this.props} path={undefined} exact={undefined} />
-        </WrappedComponent>
-      )}
+      render={renderProps => {
+        return <WrappedComponent {...this.props} {...renderProps}>
+          <Route {...this.props} {...renderProps} path={undefined} exact={undefined} />
+        </WrappedComponent>;
+      }}
     />;
   }
 }
