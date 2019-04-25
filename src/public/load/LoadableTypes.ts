@@ -23,6 +23,7 @@ export type LoadablePlaceholder<Props> = (
 //Loadable Component (Component will manage the load process)
 export type LoadableComponentProps<P> = {
   load:Loader<P>,
+  loadKey:string,
   loading?:LoadablePlaceholder<P>,
   loadedExport?:string,
   simulate?:boolean|number
@@ -33,3 +34,9 @@ export type LoadableComponentState = {
   loaded:boolean,
   error:any|null
 };
+
+//Loadable Listener
+export interface LoadableListener<Props> {
+  onLoad:(key:string, component:LoadedComponent<Props>)=>void;
+  onLoadError:(key:string, error:any)=>void;
+}

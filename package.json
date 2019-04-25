@@ -40,7 +40,8 @@
     "react-router-dom": "4.3.1",
     "react-transition-group": "^2.9.0",
     "redux": "^4.0.1",
-    "redux-thunk": "^2.3.0"
+    "redux-thunk": "^2.3.0",
+    "utility-types": "^3.5.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",

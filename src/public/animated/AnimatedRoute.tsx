@@ -35,12 +35,13 @@ export type AnimatedRouteProps<Props> = (
   RouteProps<Props> &
   {
     className?:string,
-    animateWrapper?:any
+    animateWrapper?:(props:Props)=>JSX.Element
   }
 );
 
 //Components
-//This is an example animated
+//This is an example animated wrapped. Ideally this REALLY needs to be completely
+//stateless, since any changes to this will break the animation.
 export const AnimatedRouteWrapper = (props:any) => {
   return (
     <div className={props.className||""}>

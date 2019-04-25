@@ -23,3 +23,5 @@
 
 export * from './LoadableTypes';
 export * from './LoadableComponent';
+export * from './LoadableFactory';
+export * from './withLoader';

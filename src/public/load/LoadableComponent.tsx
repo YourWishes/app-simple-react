@@ -23,10 +23,11 @@
 
 import * as React from 'react';
 import {
-  LoadedComponent,
+  LoadedComponent, LoadableListener,
   LoadablePlaceholderProps, LoadablePlaceholder,
   LoadableComponentProps, LoadableComponentState
 } from './LoadableTypes';
+import { LoadableFactory } from './LoadableFactory';
 import { ComponentPromise } from './../promise/';
 
 // Types //
@@ -34,7 +35,10 @@ export const DummyPlaceholder = (props:LoadablePlaceholderProps<any>) => (
   <>{props.error||''}</>
 );
 
-export class LoadableComponent<Props> extends React.PureComponent<LoadableComponentProps<Props>,LoadableComponentState> {
+export class LoadableComponent<Props>
+  extends React.PureComponent<LoadableComponentProps<Props>,LoadableComponentState>
+  implements LoadableListener<Props>
+{
   loadedComponent:LoadedComponent<Props>;
   loadingPromise:ComponentPromise<any>;
 
@@ -47,7 +51,6 @@ export class LoadableComponent<Props> extends React.PureComponent<LoadableCompon
       loaded: false,
       error: null
     };
-
   }
 
   componentDidMount() {
@@ -58,47 +61,43 @@ export class LoadableComponent<Props> extends React.PureComponent<LoadableCompon
       error: null
     });
 
-    //Cancel any pending promises, may exist but unlikely
-    if(this.loadingPromise) this.loadingPromise.cancel();
+    //Tell the factory to start loading, this will need to happen regardless
+    LoadableFactory.load(this.props.loadKey, this.props.load);
 
-    //Load and listen, we can allow a simulated load here
+
+    //Load and listen, we can allow a simulated load here (for testing loading)
     if(this.props.simulate) {
       //You may pass either a bool or a number for simulating a load
       let simu = parseInt(`${this.props.simulate}`);
       if(isNaN(simu)) simu = 1000;
 
       //Make a fake promise wrapper
-      this.loadingPromise = ComponentPromise( (async () => {
+      //Note that this promise will NOT respect unmounted components.
+      let prom = (async () => {
         //Here's where we simulate the load
         await new Promise(resolve => setTimeout(resolve, simu));
 
-        //Do a normal load, so keep in mind this may also take some time..
-        //e.g. if I pass 1000 it won't REALLY take 1 second, it may take 1.013 seconds
-        return await this.props.load();
-      })() );
-    } else {
-      this.loadingPromise = ComponentPromise(this.props.load());
-    }
+        //Now add a load listener (Which will auto trigger onLoad)
+        //this may not be 100% Accurate time since this relies on how long the
+        //actual load (above) took, as well as how long your delay is.
+        //e.g. if my simu is 16ms but the real real load takes 32, this will take
+        //32ms to fire onLoad, inversely if my sim is 1000 and it only takes 16 then
+        //the onLoad will trigger after 1000ms
+        LoadableFactory.addLoadListener(this.props.loadKey, this);
+      })();
 
-    //Now waiting for the promise to finish
-    this.loadingPromise.then(e => this.onLoaded(e)).catch(ex => this.onLoadError(ex));
+    } else {
+      LoadableFactory.addLoadListener(this.props.loadKey, this);
+    }
   }
 
   componentWillUnmount() {
-    //When we unmount cancel any pending promises, doesn't ACTUALLY cancel
-    if(this.loadingPromise) this.loadingPromise.cancel();
-
-    //Unmounting, stop listening (but this won't stop the load)
-    this.setState({
-      loading: false,
-      error: 'Component was unmounted during load'
-    });
+    //Remove ourselves as a listener, this will also stop setState for an unmounted
+    //component!
+    LoadableFactory.removeLoadListener(this.props.loadKey, this);
   }
 
-  onLoaded(e:LoadedComponent<Props>) {
-    //Cancelled? Do nothing.
-    if(e.isCancelled) return;
-
+  onLoad(key:string, e:LoadedComponent<Props>) {
     //Loaded, use named export (or default)
     this.loadedComponent = e[this.props.loadedExport || 'default'];
 
@@ -110,12 +109,8 @@ export class LoadableComponent<Props> extends React.PureComponent<LoadableCompon
     });
   }
 
-  onLoadError(e:any) {
-    //Cancelled... do nothing
-    if(e.isCancelled) return;
-
+  onLoadError(key:string, e:any) {
     //Error
-    console.error(e);
     this.setState({
       loading: false,
       loaded: false,
