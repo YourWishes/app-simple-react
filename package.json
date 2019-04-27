@@ -1,6 +1,6 @@
 {
   "name": "@yourwishes/app-simple-react",
-  "version": "2.6.4",
+  "version": "2.6.5",
   "description": "",
   "main": "dist/private/index.js",
   "scripts": {
@@ -32,7 +32,7 @@
     "@types/react-router-dom": "^4.3.1",
     "@types/react-transition-group": "^2.9.0",
     "@yourwishes/app-base": "^2.0.3",
-    "@yourwishes/app-react": "^2.2.0",
+    "@yourwishes/app-react": "^2.2.1",
     "@yourwishes/app-store": "^1.0.1",
     "history": "^4.7.2",
     "react-redux": "^6.0.0",
