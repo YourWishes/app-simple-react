@@ -969,9 +969,9 @@
     cross-fetch "^3.0.1"
     node-cache "^4.2.0"
 
-"@yourwishes/app-react@^2.2.1":
-  version "2.2.1"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-react/-/app-react-2.2.1.tgz#81b462cb9e4aeb3033d9b338e5eac67a01db2f59"
+"@yourwishes/app-react@^2.2.2":
+  version "2.2.2"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-react/-/app-react-2.2.2.tgz#b5062581c6fae16bd30724f11fb24a6d3330ff93"
   dependencies:
     "@babel/core" "^7.2.2"
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"
