@@ -24,11 +24,15 @@
 import * as React from 'react';
 import { NavLink, NavLinkProps } from 'react-router-dom';
 
-export interface LinkProps extends React.HTMLAttributes<HTMLAnchorElement|HTMLButtonElement> {
+export type LinkExtends = (
+  React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>
+);
+
+export type LinkProps = LinkExtends & {
   to?:string,
   activeClassName?:string,
   exact?:boolean
-}
+};
 
 export const isRelativeUrl = (s:string) =>  !/^(?:[a-z]+:)?\/\//i.test(s);
 
