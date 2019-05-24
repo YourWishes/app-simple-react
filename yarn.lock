@@ -978,9 +978,10 @@
     node-cache "^4.2.0"
     terminal-link "^1.3.0"
 
-"@yourwishes/app-react@^2.2.3":
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-react/-/app-react-2.2.3.tgz#bf043bce1bccbacba37821ec2d6616e873792c3a"
+"@yourwishes/app-react@^2.2.4":
+  version "2.2.4"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-react/-/app-react-2.2.4.tgz#e795b06d1e41c50f54323075a7adb93ab5ca346a"
+  integrity sha512-Cbd/pzIHFxcm0a8F2ccHHdqC8K4wqCT/lcPzB7LVfwkRvtHiYT3uQCgCXUReizqscGZVuaM0Xq0clq2NV9n8tQ==
   dependencies:
     "@babel/core" "^7.2.2"
     "@babel/plugin-syntax-dynamic-import" "^7.2.0"
@@ -994,7 +995,7 @@
     "@types/webpack-dev-middleware" "^2.0.2"
     "@types/webpack-hot-middleware" "^2.16.5"
     "@yourwishes/app-base" "^2.0.10"
-    "@yourwishes/app-server" "^2.0.3"
+    "@yourwishes/app-server" "^2.0.5"
     awesome-typescript-loader "^5.2.1"
     babel-loader "^8.0.5"
     css-loader "^2.1.0"
@@ -1017,14 +1018,15 @@
     webpack-dev-middleware "^3.6.1"
     webpack-hot-middleware "^2.24.3"
 
-"@yourwishes/app-server@^2.0.3":
-  version "2.0.3"
-  resolved "https://registry.yarnpkg.com/@yourwishes/app-server/-/app-server-2.0.3.tgz#54c5e77d50afbcd0f1267261fa3810d713eb86b0"
+"@yourwishes/app-server@^2.0.5":
+  version "2.0.5"
+  resolved "https://registry.yarnpkg.com/@yourwishes/app-server/-/app-server-2.0.5.tgz#fd227a66fc906306c8d7a52a9e398756c016c7b9"
+  integrity sha512-IMYiq6He7FWdXI+irCzoR3zKuQgIgjx1qgJqqZJaXTygYLppJR6GVJyy/Zd2Rfk8dpOgAaTnZEVaJ5GBVmsCGg==
   dependencies:
     "@types/body-parser" "^1.17.0"
     "@types/express" "^4.16.0"
     "@yourwishes/app-api" "^1.1.0"
-    "@yourwishes/app-base" "^2.0.3"
+    "@yourwishes/app-base" "^2.0.10"
     body-parser "^1.18.3"
     express "^4.16.4"
 
