@@ -1,6 +1,6 @@
 {
   "name": "@yourwishes/app-simple-react",
-  "version": "2.6.8",
+  "version": "2.7.0",
   "description": "",
   "main": "dist/private/index.js",
   "scripts": {
@@ -28,25 +28,25 @@
   },
   "dependencies": {
     "@types/react-helmet": "^5.0.8",
-    "@types/react-router": "^4.4.3",
+    "@types/react-router": "^5.0.1",
     "@types/react-router-dom": "^4.3.1",
     "@types/react-transition-group": "^2.9.0",
-    "@yourwishes/app-base": "^2.0.3",
-    "@yourwishes/app-react": "^2.2.4",
+    "@yourwishes/app-base": "^2.1.1",
+    "@yourwishes/app-react": "^2.3.0",
     "@yourwishes/app-store": "^1.0.1",
     "history": "^4.7.2",
-    "react-redux": "^6.0.0",
-    "react-router": "^4.3.1",
-    "react-router-dom": "4.3.1",
-    "react-transition-group": "^2.9.0",
+    "react-redux": "^7.0.3",
+    "react-router": "^5.0.0",
+    "react-router-dom": "5.0.0",
+    "react-transition-group": "^4.1.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "utility-types": "^3.5.0"
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
-    "jest": "^23.6.0",
-    "ts-jest": "^23.10.5",
-    "typescript": "^3.4.2"
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
+    "typescript": "^3.5.1"
   }
 }
