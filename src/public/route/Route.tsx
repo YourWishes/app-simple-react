@@ -22,9 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
-import {
-  RouteProps as NativeRouteProps, Route as NativeRoute
-} from 'react-router-dom';
+import { RouteProps as NativeRouteProps, Route as NativeRoute } from 'react-router-dom';
 import { LoadableRoute, LoadableRouteProps } from './LoadableRoute';
 
 export type RouteProps<Props> = (

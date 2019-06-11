@@ -28,7 +28,7 @@ import {
   LoadableComponentProps, LoadableComponentState
 } from './LoadableTypes';
 import { LoadableFactory } from './LoadableFactory';
-import { ComponentPromise } from './../promise/';
+import { ComponentPromise } from '~@promise';
 
 // Types //
 export const DummyPlaceholder = (props:LoadablePlaceholderProps<any>) => (

@@ -4,18 +4,21 @@
     "module": "commonjs",
     "sourceMap": true,
     "declaration": true,
-    "typeRoots": [ "./node_modules/@types" ],
+    "typeRoots": [ "./node_modules/@types"
+    ],
     "outDir": "./dist/",
     "jsx": "React",
     "baseUrl": "src",
     "paths": {
+      "~@*": [ "public/*" ],
       "~*": [ "private/*" ]
     },
     "plugins": [
       { "transform": "@zerollup/ts-transform-paths" }
     ]
   },
-  "files": ["./src/public/definitions.d.ts"],
+  "files": [ "./src/public/definitions.d.ts" ],
+  "include": [ "./src/**/*" ],
   "exclude": [
     "node_modules",
     "dist",

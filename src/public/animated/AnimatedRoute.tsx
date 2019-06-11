@@ -22,7 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
-import { Route, RouteProps } from './../route/';
+import { Route, RouteProps } from '~@route';
 
 //Types
 //Animated Route will receive, directly, the classNames from the transition.

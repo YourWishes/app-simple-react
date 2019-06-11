@@ -23,7 +23,7 @@
 
 import * as React from 'react';
 import { Route, withRouter, RouteComponentProps, RouteProps } from 'react-router-dom';
-import { LoadableComponentProps, LoadableComponent } from './../load/';
+import { LoadableComponentProps, LoadableComponent } from '~@load';
 
 export type LoadableRouteProps<Props> = (
   LoadableComponentProps<Props> & RouteProps
