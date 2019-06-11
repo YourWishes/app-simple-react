@@ -22,7 +22,7 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import { Module, NPMPackage } from '@yourwishes/app-base';
-import { ISimpleReactApp } from './../app/';
+import { ISimpleReactApp } from '~app';
 
 export class SimpleReactModule extends Module {
   app:ISimpleReactApp;

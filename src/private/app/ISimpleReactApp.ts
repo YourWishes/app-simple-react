@@ -22,11 +22,11 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import { IReactApp } from '@yourwishes/app-react';
-import { SimpleReactModule } from './../module/';
-import { SimpleReactCompiler } from './../compiler/';
+import { SimpleReactModule } from '~module';
+import { SimpleReactCompiler } from '~compiler';
 
 export interface ISimpleReactApp extends IReactApp {
   simpleReact:SimpleReactModule;
-  
+
   getCompiler():SimpleReactCompiler;
 }

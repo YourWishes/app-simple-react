@@ -1,11 +1,11 @@
 {
   "name": "@yourwishes/app-simple-react",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "description": "",
   "main": "dist/private/index.js",
   "scripts": {
     "test": "jest",
-    "build": "tsc -p ./src/private/ && tsc -p ./src/public/"
+    "build": "ttsc --outDir dist/private ./src/private/index.ts && ttsc --target es5 --outDir dist/public ./src/public/index.tsx"
   },
   "repository": {
     "type": "git",
@@ -37,7 +37,7 @@
     "history": "^4.7.2",
     "react-redux": "^7.0.3",
     "react-router": "^5.0.0",
-    "react-router-dom": "5.0.0",
+    "react-router-dom": "5.0.1",
     "react-transition-group": "^4.1.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
@@ -45,8 +45,10 @@
   },
   "devDependencies": {
     "@types/jest": "^24.0.11",
+    "@zerollup/ts-transform-paths": "^1.7.3",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
+    "ttypescript": "^1.5.7",
     "typescript": "^3.5.1"
   }
 }

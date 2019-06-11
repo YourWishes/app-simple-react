@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "target": "es2018",
+    "module": "commonjs",
+    "sourceMap": true,
+    "declaration": true,
+    "typeRoots": [ "./node_modules/@types" ],
+    "outDir": "./dist/",
+    "jsx": "React",
+    "baseUrl": "src",
+    "paths": {
+      "~*": [ "private/*" ]
+    },
+    "plugins": [
+      { "transform": "@zerollup/ts-transform-paths" }
+    ]
+  },
+  "files": ["./src/public/definitions.d.ts"],
+  "exclude": [
+    "node_modules",
+    "dist",
+    "./**/*.test.js"
+  ]
+}
