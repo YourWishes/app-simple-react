@@ -37,7 +37,7 @@ export type LoadableComponentState = {
 
 //Loadable Listener
 export interface LoadableListener<Props> {
-  onLoading(key:string)=>void;
+  onLoading:(key:string)=>void;
   onLoad:(key:string, component:LoadedComponent<Props>)=>void;
   onLoadError:(key:string, error:any)=>void;
 }
