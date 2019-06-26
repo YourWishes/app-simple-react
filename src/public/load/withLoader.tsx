@@ -39,7 +39,9 @@ export type withLoaderParametersProps = {
 
 export type withLoaderProps = LoadableListenerState & withLoaderParametersProps;
 
-export const withLoader = function<Props extends withLoaderProps>(loadKey:string, WrappedComponent:React.ComponentType<Props>) {
+export const withLoader = function<Props extends withLoaderProps>(
+  loadKey:string, WrappedComponent:React.ComponentType<Props>
+) {
   type HOCProps = Subtract<Props,withLoaderProps> & withLoaderParametersProps;
 
   return class extends React.Component<HOCProps, LoadableListenerState> implements LoadableListener<Props> {
@@ -81,7 +83,7 @@ export const withLoader = function<Props extends withLoaderProps>(loadKey:string
           //this will trigger the loadable factory to tell us we're loaded anyway
           LoadableFactory.addLoadListener(loadKey, this);
         } else {
-          this.setState({ loading: true, loaded: false, error: null });
+          this.setState({ loading: LoadableFactory.isLoading(loadKey), loaded: false, error: null });
           LoadableFactory.addLoadListener(loadKey, this);
         }
       }
@@ -91,12 +93,16 @@ export const withLoader = function<Props extends withLoaderProps>(loadKey:string
       LoadableFactory.removeLoadListener(loadKey, this);
     }
 
+    onLoading(key:string) {
+      this.setState({ loading: true });
+    }
+
     onLoad(key:string) {
       this.setState({ loaded: true, loading: false, error: null });
     }
 
     onLoadError(key:string, ex:any) {
-      this.setState({ loaded: false, loading: false, error: null });
+      this.setState({ loaded: false, loading: false, error: ex });
     }
 
     render() {

@@ -53,10 +53,13 @@ class LoadableFactoryModule {
     //The factory itself will also listen for the load event, and it will do so first.
     loading.then(e => this.onLoad(key, e)).catch(ex => this.onLoadError(key, ex));
 
+    [...(this.loadListeners[key]||[])].forEach(ll => ll.onLoading(key));
+
     return loading;
   }
 
-  isLoaded(key:string) { return !!this.loaded[key]; }
+  isLoaded(key:string) { return typeof this.loaded[key] !== typeof undefined; }
+  isLoading(key:string) { return !this.isLoaded(key) && this.loaders[key] ? true : false; }
   getLoadedComponent(key:string) {return this.loaded[key] || null; }
   getLoadError(key:string) { return this.loadErrors[key] || null; }
 
@@ -86,6 +89,10 @@ class LoadableFactoryModule {
       listener.onLoad(key, this.loaded[key]);
     } else if(this.loadErrors[key]) {
       listener.onLoadError(key, this.loadErrors[key]);
+    }
+
+    if(this.isLoading(key)) {
+      listener.onLoading(key);
     }
   }
 

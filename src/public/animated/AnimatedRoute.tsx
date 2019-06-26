@@ -55,8 +55,6 @@ export class AnimatedRoute<Props> extends React.Component<AnimatedRouteProps<Pro
     super(props);
   }
 
-
-
   render() {
     let WrappedComponent = this.props.animateWrapper || AnimatedRouteWrapper;
     return <Route

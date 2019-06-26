@@ -21,24 +21,29 @@
 // OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
-export interface ComponentPromise<P> extends Promise<P> {
-  cancel:()=>void
-};
+import * as React from 'react';
+import { App } from './';
 
-export const ComponentPromise = function<P>(promise:Promise<P>):ComponentPromise<P> {
-  if(!promise || !promise.then) throw new Error('Invalid Promise supplied');
-  
-  let hasCancelled = false;
-
-  const prom:ComponentPromise<P> = new Promise<P>((resolve, reject) => {
-    promise.then(value => {
-      hasCancelled ? reject({ isCancelled: true, value }) : resolve(value);
-    }).catch( error => {
-      reject({ isCancelled: hasCancelled, error });
-    });
-  }) as ComponentPromise<P>;
-
-  (prom['cancel'] as any) = () => hasCancelled = true;
-
-  return prom;
+class DummyApp extends App<any,any> {
+  getReducer() { return state => state; }
+  getComponent() { return <div />; }
 }
+
+
+describe('App', () => {
+  it('should require an app handle', () => {
+    expect(() => new DummyApp('')).toThrow();
+    expect(() => new DummyApp(null)).toThrow();
+    expect(() => new DummyApp('app')).not.toThrow();
+  });
+
+  it('should make a store', () => {
+    let app = new DummyApp('app');
+    expect(app.store).toBeDefined();
+  });
+
+  it('should create a history', () => {
+    let app = new DummyApp('app');
+    expect(app.history).toBeDefined();
+  });
+});

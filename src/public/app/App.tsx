@@ -1,6 +1,6 @@
 // Copyright (c) 2019 Dominic Masters
 //
-// MIT License 
+// MIT License
 //
 // Permission is hereby granted, free of charge, to any person obtaining
 // a copy of this software and associated documentation files (the
@@ -36,6 +36,7 @@ export abstract class App<S,A extends Action> implements AppStoreOwner<S,A>  {
   history:History;
 
   constructor(appHandle:string) {
+    if(!appHandle) throw new Error("Missing App Handle");
     this.appHandle = appHandle;
     this.store = new AppStore<S,A>(this);
     this.history = createBrowserHistory();
@@ -55,6 +56,6 @@ export abstract class App<S,A extends Action> implements AppStoreOwner<S,A>  {
 
   getElement() { return document.getElementById(this.appHandle); }
 
-  abstract getComponent():any;
+  abstract getComponent():React.ReactNode;
   abstract getReducer():Reducer<S,A>;
 }

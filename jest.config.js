@@ -1,6 +1,7 @@
 module.exports = {
   "roots": [
-    "<rootDir>/src/private"
+    "<rootDir>/src/private",
+    "<rootDir>/src/public"
   ],
   "transform": {
     "^.+\\.tsx?$": "ts-jest"
@@ -17,5 +18,8 @@ module.exports = {
     "js",
     "jsx",
     "json"
+  ],
+  "setupFilesAfterEnv": [
+    "<rootDir>/enzyme.js"
   ]
 }

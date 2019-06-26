@@ -1,6 +1,6 @@
 {
   "name": "@yourwishes/app-simple-react",
-  "version": "2.8.1",
+  "version": "2.8.2",
   "description": "",
   "main": "dist/private/index.js",
   "scripts": {
@@ -35,7 +35,7 @@
     "@yourwishes/app-react": "^2.3.0",
     "@yourwishes/app-store": "^1.0.1",
     "history": "^4.7.2",
-    "react-redux": "^7.0.3",
+    "react-redux": "^7.1.0",
     "react-router": "^5.0.0",
     "react-router-dom": "5.0.1",
     "react-transition-group": "^4.1.0",
@@ -44,8 +44,11 @@
     "utility-types": "^3.5.0"
   },
   "devDependencies": {
-    "@types/jest": "^24.0.11",
+    "@types/enzyme": "^3.9.3",
+    "@types/jest": "^24.0.14",
     "@zerollup/ts-transform-paths": "^1.7.3",
+    "enzyme": "^3.10.0",
+    "enzyme-adapter-react-16": "^1.14.0",
     "jest": "^24.8.0",
     "ts-jest": "^24.0.2",
     "ttypescript": "^1.5.7",

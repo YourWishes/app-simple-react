@@ -97,6 +97,10 @@ export class LoadableComponent<Props>
     LoadableFactory.removeLoadListener(this.props.loadKey, this);
   }
 
+  onLoading(key:string) {
+    this.setState({ loading: true });
+  }
+
   onLoad(key:string, e:LoadedComponent<Props>) {
     //Loaded, use named export (or default)
     this.loadedComponent = e[this.props.loadedExport || 'default'];
