@@ -103,7 +103,11 @@ export class LoadableComponent<Props>
 
   onLoad(key:string, e:LoadedComponent<Props>) {
     //Loaded, use named export (or default)
-    this.loadedComponent = e[this.props.loadedExport || 'default'];
+    let k = this.props.loadedExport || 'default';
+    if(!e) {
+      return this.onLoadError(key, "Loaded component did not return expected export");
+    }
+    this.loadedComponent = e[k] || e;
 
     //Now update the state, this will start using the loaded component.
     this.setState({
@@ -140,10 +144,12 @@ export class LoadableComponent<Props>
     if(loaded && this.loadedComponent) {
       //Loaded successfully, use loaded
       ComponentType = this.loadedComponent;
+
     } else if(loaded) {
       //Loaded but no component found (use paceholder)
       error = error || 'Failed to find loaded component';
       ComponentType = loadingComponent || ComponentType;
+
     } else {
       //Loading / Load Failed (use placeholder)
       ComponentType = loadingComponent || ComponentType;

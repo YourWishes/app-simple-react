@@ -45,7 +45,7 @@ class LoadableFactoryModule {
 
     //Before we begin loading, let's see if it already loaded, if it is we can
     //make a nice dummy promise that will immediately return.
-    if(this.loaders[key]) return this.loaded[key];
+    if(this.loaders[key]) return this.loaders[key];
 
     //Not loaded, begin loading
     let loading = this.loaders[key] = loader();
