@@ -39,7 +39,7 @@ export const LoadableRoute = function<Props extends RouteProps>(props:LoadableRo
       //TODO: There's something strange happening so I need to "make a new component"
       //everytime render is called, otherwise react-router isn't working as expected...
       let WrappedLoadable = withRouter(LoadableComponent);
-      return <WrappedLoadable {...props} {...routeProps} />
+      return <><WrappedLoadable {...props} {...routeProps} /></>
     }} />
   );
 };

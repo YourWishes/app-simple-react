@@ -22,58 +22,16 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
-import { RouteSwitch, Route } from '~@route';
-import { TransitionGroup, CSSTransition } from 'react-transition-group';
-import { Location } from 'history';
-
-
-//Here we have a switch render wrapped to help stop route changes forcing a
-//re-render This was driving me insane.
-export interface AnimatedSwitchManagerProps {
-  children?:React.ReactNode,
-  location:Location
-}
-export class AnimatedSwitchManager extends React.Component<AnimatedSwitchManagerProps> {
-  constructor(props:AnimatedSwitchManagerProps) { super(props); }
-
-  shouldComponentUpdate(props:AnimatedSwitchManagerProps) {
-    return props.location.pathname !== this.props.location.pathname;
-  }
-
-  render() {
-    return <>{ this.props.children }</>;
-  }
-}
+import { AnimatedRoute } from './AnimatedRoute';
 
 //Children should be the animated Routes to be transitioned.
 //Note that if using a loaded route you will need to have a wrapper that can
 //safely receive the props while the component is still loading, especially
 //if it is unloaded early.
-export type AnimatedSwitchProps = (
-  {
-    children:React.ReactNode
-  } & CSSTransition.CSSTransitionProps
-);
+export type AnimatedSwitchProps = {
+  children:React.ReactNode
+}
 
 export const AnimatedSwitch = (props:AnimatedSwitchProps) => {
-  //We wrap the transition in a route to help the CSS Transition work as intended
-  //This technically renders nothing, but provides all logic necessary, including
-  //A switch for routes, as well as the CSSTransition wrapper.
-
-  //At the moment only CSS Trnaistions are supported.
-  return (
-    <Route render={ ({location}) => {
-      return (
-        <TransitionGroup component={null}>
-          <CSSTransition key={location.key} {...props}>
-            <RouteSwitch location={location}>
-              <AnimatedSwitchManager location={location}>
-                { props.children }
-              </AnimatedSwitchManager>
-            </RouteSwitch>
-          </CSSTransition>
-        </TransitionGroup>
-      );
-    }} />
-  );
+  return <>{ props.children }</>
 };

@@ -22,7 +22,9 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
-import { Route, RouteProps } from '~@route';
+import { Route } from '~@route';
+import { LoadableComponent } from '~@load';
+import { CSSTransition } from 'react-transition-group';
 
 //Types
 //Animated Route will receive, directly, the classNames from the transition.
@@ -31,18 +33,13 @@ import { Route, RouteProps } from '~@route';
 //real solution is to provide an animateWrapper component that is part of
 //the main JS that can receive the classname while the loadable finishes
 //it's thing.
-export type AnimatedRouteProps<Props> = (
-  RouteProps<Props> &
-  {
-    className?:string,
-    animateWrapper?:(props:Props)=>JSX.Element
-  }
-);
 
-//Components
+//Wrapper
+export type AnimatedWrapperProps = any;
+
 //This is an example animated wrapped. Ideally this REALLY needs to be completely
 //stateless, since any changes to this will break the animation.
-export const AnimatedRouteWrapper = (props:any) => {
+export const AnimatedRouteWrapper = (props:AnimatedWrapperProps) => {
   return (
     <div className={props.className||""}>
       { props.children }
@@ -50,20 +47,47 @@ export const AnimatedRouteWrapper = (props:any) => {
   );
 };
 
-export class AnimatedRoute<Props> extends React.Component<AnimatedRouteProps<Props>> {
-  constructor(props:AnimatedRouteProps<Props>) {
+
+//Route
+export type AnimatedRouteProps = any & CSSTransition.CSSTransitionProps;
+
+export class AnimatedRoute<Props extends AnimatedRouteProps> extends React.Component<Props> {
+  constructor(props:Props) {
     super(props);
   }
 
   render() {
-    let WrappedComponent = this.props.animateWrapper || AnimatedRouteWrapper;
-    return <Route
-      {...this.props} load={undefined} component={undefined}
-      render={renderProps => {
-        return <WrappedComponent {...this.props} {...renderProps}>
-          <Route {...this.props} {...renderProps} path={undefined} exact={undefined} />
-        </WrappedComponent>;
-      }}
-    />;
+    //Prop Clones, since we only want to pass specific props down
+    let {
+      animateWrapper, path, exact, component, render, load
+    } = this.props;
+
+    //Wrapped Component
+    let WrappedComponent = animateWrapper || AnimatedRouteWrapper
+
+    //Thing to actually render (Within the wrapped component)
+    let ToRender:any;
+    if(component) {
+      ToRender = component;
+    } else if(render) {
+      ToRender = render;
+    } else if(load) {
+      //Loadable Route (hack)
+      //ToRender = props => <LoadableRoute {...props as any} />
+      ToRender = LoadableComponent;
+    } else {
+      ToRender = () => <></>;
+    }
+
+    //Render itself
+    return (
+      <Route path={path} exact={exact}>{ ({ match }) => (
+        <CSSTransition {...this.props as any} in={match != null} unmountOnExit>
+          <WrappedComponent>
+            <ToRender {...this.props} />
+          </WrappedComponent>
+        </CSSTransition>
+      ) }</Route>
+    );
   }
 }
