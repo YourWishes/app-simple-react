@@ -51,9 +51,9 @@ export const withLoader = function<Props extends withLoaderProps>(
       super(props);
 
       this.state = {
-        loading: false,
-        loaded: false,
-        error: null
+        loading: LoadableFactory.isLoading(loadKey),
+        loaded: LoadableFactory.isLoaded(loadKey),
+        error: LoadableFactory.getLoadError(loadKey)
       };
     }
 
