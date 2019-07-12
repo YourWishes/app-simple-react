@@ -79,13 +79,18 @@ export class AnimatedRoute<Props extends AnimatedRouteProps> extends React.Compo
       ToRender = () => <></>;
     }
 
+    let currentRenderProps;
+
     //Render itself
     return (
       <Route path={path} exact={exact}>{ renderProps => {
+        //Keep props around, stops things getting funky
         let { match } = renderProps;
+        if(!renderProps || match != null) currentRenderProps = renderProps;
+
         return <CSSTransition {...this.props as any} in={match != null} unmountOnExit>
           <WrappedComponent>
-            <ToRender {...renderProps} {...this.props} />
+            <ToRender {...currentRenderProps} {...this.props} />
           </WrappedComponent>
         </CSSTransition>
       } }</Route>
