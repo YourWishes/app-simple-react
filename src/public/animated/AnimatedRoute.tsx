@@ -22,9 +22,10 @@
 // WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 
 import * as React from 'react';
-import { Route } from '~@route';
+import { Route, RouteProps } from '~@route';
 import { LoadableComponent } from '~@load';
 import { CSSTransition } from 'react-transition-group';
+import { Omit } from 'utility-types';
 
 //Types
 //Animated Route will receive, directly, the classNames from the transition.
@@ -35,11 +36,11 @@ import { CSSTransition } from 'react-transition-group';
 //it's thing.
 
 //Wrapper
-export type AnimatedWrapperProps = any;
+export type AnimatedWrapperProps<Props> = any;
 
 //This is an example animated wrapped. Ideally this REALLY needs to be completely
 //stateless, since any changes to this will break the animation.
-export const AnimatedRouteWrapper = (props:AnimatedWrapperProps) => {
+export const AnimatedRouteWrapper = <Props extends {}>(props:AnimatedWrapperProps<Props>) => {
   return (
     <div className={props.className||""}>
       { props.children }
@@ -48,11 +49,22 @@ export const AnimatedRouteWrapper = (props:AnimatedWrapperProps) => {
 };
 
 
-//Route
-export type AnimatedRouteProps = any & CSSTransition.CSSTransitionProps;
+//Router
+export type AnimatedRouteProps<Props> = (
+  //CSS Transition props, umount on exit is forced set to true
+  Omit<CSSTransition.CSSTransitionProps, 'unmountOnExit'> &
 
-export class AnimatedRoute<Props extends AnimatedRouteProps> extends React.Component<Props> {
-  constructor(props:Props) {
+  //AnimatedRoute specific props
+  {
+    animateWrapper:React.ComponentType<AnimatedWrapperProps<Props>>
+  } &
+
+  //Generic route props
+  RouteProps<Props>
+);
+
+export class AnimatedRoute<Props> extends React.Component<AnimatedRouteProps<Props>> {
+  constructor(props:AnimatedRouteProps<Props>) {
     super(props);
   }
 
@@ -97,3 +109,14 @@ export class AnimatedRoute<Props extends AnimatedRouteProps> extends React.Compo
     );
   }
 }
+
+
+type TestProps = {
+  test:string;
+}
+
+const TestWrapper = (props:AnimatedWrapperProps<TestProps>) => {
+  return <div>test</div>
+};
+
+<AnimatedRoute<TestProps> timeout={300} test="test" animateWrapper={TestWrapper} loadKey="test" />

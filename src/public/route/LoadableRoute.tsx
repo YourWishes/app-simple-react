@@ -26,19 +26,21 @@ import { Route, withRouter, RouteComponentProps, RouteProps } from 'react-router
 import { LoadableComponentProps, LoadableComponent } from '~@load';
 
 export type LoadableRouteProps<Props> = (
-  LoadableComponentProps<Props> & RouteProps
+  LoadableComponentProps<RouteProps & Props>
 );
 
 export type LoadableRouteComponent<Props> = (
   (props:LoadableRouteProps<Props>) => any
 );
 
-export const LoadableRoute = function<Props extends RouteProps>(props:LoadableRouteProps<Props>) {
+export const LoadableRoute = function<Props>(props:LoadableRouteProps<Props>) {
+  type CombProps = LoadableRouteProps<Props>;
+  type ComponentProps = RouteComponentProps<Props>;
   return (
-    <Route<Props> {...props} render={(routeProps) => {
+    <Route<CombProps> {...props} render={(routeProps:ComponentProps) => {
       //TODO: There's something strange happening so I need to "make a new component"
       //everytime render is called, otherwise react-router isn't working as expected...
-      let WrappedLoadable = withRouter(LoadableComponent);
+      let WrappedLoadable = withRouter<ComponentProps, any>(LoadableComponent);
       return <><WrappedLoadable {...props} {...routeProps} /></>
     }} />
   );

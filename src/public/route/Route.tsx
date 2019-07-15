@@ -26,7 +26,7 @@ import { RouteProps as NativeRouteProps, Route as NativeRoute } from 'react-rout
 import { LoadableRoute, LoadableRouteProps } from './LoadableRoute';
 
 export type RouteProps<Props> = (
-  LoadableRouteProps<Props> | NativeRouteProps
+  LoadableRouteProps<Props> | (NativeRouteProps & Props)
 );
 
 export class Route<Props> extends React.Component<RouteProps<Props>> {
@@ -38,6 +38,7 @@ export class Route<Props> extends React.Component<RouteProps<Props>> {
     //Is this a loadable Route?
     type LoadableType = LoadableRouteProps<Props>;
     if((this.props as LoadableType).load) {
+      //Yes.
       return <LoadableRoute<LoadableType> {...(this.props as LoadableType)} />;
     }
 
