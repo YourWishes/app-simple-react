@@ -56,7 +56,7 @@ export type AnimatedRouteProps<Props> = (
 
   //AnimatedRoute specific props
   {
-    animateWrapper:React.ComponentType<AnimatedWrapperProps<Props>>
+    animateWrapper?:React.ComponentType<AnimatedWrapperProps<Props>>
   } &
 
   //Generic route props
